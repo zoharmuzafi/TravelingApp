@@ -40,9 +40,10 @@ class PostsController < ApplicationController
   def destroy
     post_id = params[:id]
     post = Post.find(post_id)
+    user_id = post.user_id
     if (post.user_id).to_s == (current_user.id).to_s
       post.destroy
-      redirect_to user_path
+      redirect_to user_path(user_id)
     # else
     #   flash[:error]="YOU CAN'T DELETE IT"
     end  
