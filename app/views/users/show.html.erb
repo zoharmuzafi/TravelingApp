@@ -1,0 +1,51 @@
+<%= render "nav" %>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12 header text-center">
+			<h3>Hi, <%= current_user.name %>, Just Remember- The World Is Amazing... You're Never Alone...</h3><br>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-12 text-center yourPosts">
+			<h2>Your Posts</h2>
+		</div>
+	</div>
+	<% @user.posts.each do |post| %>
+		<div class="row ">
+			<div class="col-md-6 col-md-offset-3 singlePost">
+				<% user = User.find(post.user_id) %>
+				<h5>destination: <%= post.destination %></h5>
+				<p>description: <%= post.description %></p>
+				<%= button_to "Delete", post_path(post), method: :delete %>
+				<%= link_to "Edit", edit_post_path(post)%>
+			</div>
+		</div>
+	<% end %>
+
+	<!-- modal new post	 -->
+	<div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+          	  	<div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal">&times;</button>
+	                <h4 class="modal-title">New Match Request</h4>
+            	</div>
+           	 <div class="modal-body">
+                <%= form_for :post, url: "/posts" do |f| %>
+	                <div class="form-group">
+						<%= f.text_field :destination, class: "form-control", placeholder: "Where are you going?" %>	
+					</div>
+					<div class="form-group">
+						<%= f.text_field :description, class: "form-control", placeholder: "What are you lookng for?"%>
+					</div>
+					<div class="form-group text-center">
+						<%= f.submit "Find me a match!", class: "btn btn-primary" %>
+					</div>
+				<% end %>
+         	</div>
+          </div>
+    	</div>
+	</div>
+</div>
