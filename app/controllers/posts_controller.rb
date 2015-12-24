@@ -21,6 +21,14 @@ class PostsController < ApplicationController
   end
 
   def edit
+    post_id = params[:id]
+      @post = Post.find(post_id)
+    if (@post.user_id).to_i == (current_user.id).to_i
+      render :edit
+    else
+       # flash[:error]="YOU CAN'T EDIT IT"
+       redirect_to posts_path
+    end
   end
 
   def show
