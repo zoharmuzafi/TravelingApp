@@ -3,7 +3,8 @@ class PostsController < ApplicationController
     @post_index = true
     @posts = Post.all
   end
-
+  def new
+  end
   def create
     if current_user
       post_params = params.require(:post).permit(:destination, :description)
@@ -11,8 +12,8 @@ class PostsController < ApplicationController
       if post.save
         redirect_to posts_path
       else
-        # flash[:error] = post.errors.full_messages.join(", ")  
-        redirect_to new_post_path
+        flash[:error] = post.errors.full_messages.join(", ")  
+        redirect_to user_path(current_user)
       end
     end
   end
@@ -23,7 +24,6 @@ class PostsController < ApplicationController
     if (@post.user_id).to_i == (current_user.id).to_i
       render :edit
     else
-       # flash[:error]="YOU CAN'T EDIT IT"
        redirect_to posts_path
     end
   end
@@ -33,10 +33,11 @@ class PostsController < ApplicationController
     post = Post.find(post_id)
     user_id = post.user_id
     post_params = params.require(:post).permit(:destination, :description)
-    if post.update_attributes(post_params)
+    if creature.update_attributes(post_params)
       redirect_to user_path(user_id)
     else
-    end
+      flash[:error] = post.errors.full_messages.join(", ")
+  end
 
   end
 
@@ -47,8 +48,8 @@ class PostsController < ApplicationController
     if (post.user_id).to_s == (current_user.id).to_s
       post.destroy
       redirect_to user_path(user_id)
-    # else
-    #   flash[:error]="YOU CAN'T DELETE IT"
+    else
+      flash[:error]="Sorry, you can't delete this post"
     end  
     
   end

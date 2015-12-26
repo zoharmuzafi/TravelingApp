@@ -17,8 +17,23 @@
 				<% user = User.find(post.user_id) %>
 				<h5>destination: <%= post.destination %></h5>
 				<p>description: <%= post.description %></p>
-				<%= button_to "Delete", post_path(post), method: :delete %>
-				<%= link_to "Edit", edit_post_path(post)%>
+				<div class="text-right btns">
+					<div class="deletebtn">
+						<%= button_to "Delete", post_path(post), method: :delete, class: "btn btn-primary" %>
+					</div>
+					<div class="editbtn">
+						<%= link_to "Edit", edit_post_path(post), class: "btn btn-primary" %>
+					</div>
+				</div><hr>
+				<% post.comments.each do |comment| %>
+					<div class="row commentRow">
+						<div class="col-md-12 commentLine">
+							<div class="comment">
+								<p><%= comment.line %></p>	
+							</div>
+						</div>	
+					</div>
+				<% end %>
 			</div>
 		</div>
 	<% end %>

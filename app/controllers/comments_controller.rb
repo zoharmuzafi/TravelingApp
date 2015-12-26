@@ -7,8 +7,8 @@ class CommentsController < ApplicationController
     comment.line = "#{current_user.name}: #{comment.line}"
     if comment.save
       redirect_to posts_path
-    # else
-    #   flash.now[:danger] = "error"
+    else
+      flash.now[:error] = "error"
     end
 
   end
@@ -19,9 +19,7 @@ class CommentsController < ApplicationController
     post_id = comment.post_id
     post = Post.find(post_id)
     user_id = post.user_id
-    if user_id == current_user.id
-      comment.destroy
-      redirect_to posts_path
-     end 
+    comment.destroy
+    redirect_to posts_path 
   end
 end

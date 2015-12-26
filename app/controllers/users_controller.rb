@@ -4,8 +4,6 @@ class UsersController < ApplicationController
     @new_user = true
     if current_user
       redirect_to user_path(current_user)
-    else
-      render :new
     end
   end
 
@@ -15,7 +13,8 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
-      # redirect_to '/signup'
+      flash[:error] = @user.errors.full_messages.join(", ")
+      redirect_to '/signup'
     end
   end
 
