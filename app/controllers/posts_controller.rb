@@ -17,9 +17,6 @@ class PostsController < ApplicationController
     end
   end
 
-  def new
-  end
-
   def edit
     post_id = params[:id]
       @post = Post.find(post_id)
@@ -31,10 +28,16 @@ class PostsController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def update
+    post_id = params[:id]
+    post = Post.find(post_id)
+    user_id = post.user_id
+    post_params = params.require(:post).permit(:destination, :description)
+    if post.update_attributes(post_params)
+      redirect_to user_path(user_id)
+    else
+    end
+
   end
 
   def destroy
