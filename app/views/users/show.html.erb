@@ -24,7 +24,11 @@
 					<div class="editbtn">
 						<%= link_to "Edit", edit_post_path(post), class: "btn btn-primary" %>
 					</div>
-				</div><hr>
+				</div>
+				<% if post.comments.length>0 %>
+					<hr>
+					<p>Comments:</p>
+				<% end %>
 				<% post.comments.each do |comment| %>
 					<div class="row commentRow">
 						<div class="col-md-12 commentLine">

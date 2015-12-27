@@ -29,6 +29,9 @@
 						</div>	
 					</div>
 				<% end %>
+				<% if post.comments.length>0 %>
+					<p>Comments:</p>
+				<% end %>
 				<% post.comments.each do |comment| %>
 					<div class="row commentRow">
 						<div class="col-md-12 commentLine">
@@ -36,8 +39,8 @@
 								<p><%= comment.line %></p>	
 							</div>
 							<% if current_user.id == comment.user_id %>
-								<div class="text-right commentDelete">
-									<%= button_to "Delete", comment_path(comment), method: :delete %>
+								<div class="text-right commentDelete btnDelete">
+									<%= button_to "Delete", comment_path(comment), method: :delete, class:"btn btn-primary CommentDeleteBtn"%>
 								</div>
 							<% end %>
 						</div>	

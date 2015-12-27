@@ -8,7 +8,8 @@ class CommentsController < ApplicationController
     if comment.save
       redirect_to posts_path
     else
-      flash.now[:error] = "error"
+      flash[:error] = "Your comment is too short"
+      redirect_to posts_path
     end
 
   end
