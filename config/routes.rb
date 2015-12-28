@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-	root to: 'sessions#create'
+  root to: 'sessions#create'
   resources :users
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
