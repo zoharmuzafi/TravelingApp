@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
 
   resources :posts
-
   resources :comments
+  resources :chats
+  resources :messages
+
 
 end
 

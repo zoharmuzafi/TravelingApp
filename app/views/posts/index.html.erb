@@ -11,6 +11,22 @@
 				<% user = User.find(post.user_id) %>
 				<h5><%= user.name %> is traveling to <%= post.destination %></h5>
 				<p><%= post.description %></p><hr>
+				<%= form_for :message, :url => messages_path do |f| %>
+					<div class="row">
+						<div class="col-md-9">
+							<div class="form-group">
+								<%= f.text_field :content, class: "form-control", placeholder: "sent a private message to #{user.name.capitalize}" %>
+								<% @user_id = user.id %>
+								<%= f.hidden_field :user_id, :value => @user_id %>    
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group text-center">
+								<%= f.submit "Send", class: "btn btn-primary btn-block" %>
+							</div>
+						</div>	
+					</div>
+				<% end %>
 				<%= form_for :comment, :url => comments_path do |f| %>
 					<div class="row">
 						<div class="col-md-9">
@@ -22,8 +38,8 @@
 								<%= f.hidden_field :user_id, :value => @user_id %>
 							</div>
 						</div>
-						<div class="col-md-1">
-							<div class="form-group text-center">
+						<div class="col-md-3">
+							<div class="form-group text-center btn-block">
 								<%= f.submit "Comment", class: "btn btn-primary" %>
 							</div>
 						</div>	

@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
-      flash[:error] = user.errors.full_messages.join(", ")
+      flash[:error] = @user.errors.full_messages.join(", ")
       redirect_to '/signup'
     end
   end
@@ -22,5 +22,8 @@ class UsersController < ApplicationController
     @show_user = true
     user_id = params[:id]
     @user = User.find(user_id) 
+  end
+
+  def update
   end
 end
