@@ -71,12 +71,14 @@
 .commentLine {
 	background-color: rgba(253, 253, 253, 0.3);
 	margin-bottom: 1%;
+	margin-right: 0%;
 	padding: 1% 3%;
 	padding-right: 6%;
+
 }
 .commentRow{
 	margin: 0 0.5%;
-	padding-right: 4%;
+	
 }
 p{
 	margin: 1% 0;
@@ -106,6 +108,10 @@ p{
 }
 .CommentDeleteBtn{
 	padding: 0% 15%;
+}
+.messageDiv{
+	background-color: rgba(173, 208, 239, 0.8);
+	margin-top: 2%;
 }
 
 	

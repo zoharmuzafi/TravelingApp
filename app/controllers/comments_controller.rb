@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
 
+  before_filter :authorize
+  
   def create
     comment_params = params.require(:comment).permit(:line, :post_id, :user_id)
     comment = Comment.new(comment_params)

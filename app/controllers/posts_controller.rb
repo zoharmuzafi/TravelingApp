@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+
+  before_filter :authorize
+  
   def index
     @post_index = true
     @posts = Post.all

@@ -5,27 +5,27 @@
 	</div>
 </div>
 <% current_user.chats.each do |chat| %>
-	<%  chat.messages.each do |message| %>
-		<div class="row">
-			<div class="col-md-6 col-md-offset-3 text-center">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 messageDiv">
+			<%  chat.messages.each do |message| %>
 				<p><%= message.content %></p>
-			</div>
-		</div>
-		<%= form_for :message, :url => messages_path do |f| %>
-					<div class="row">
-						<div class="col-md-9">
-							<div class="form-group">
-								<%= f.text_field :content, class: "form-control", placeholder: "sent an Answer" %>
-								
-								<%= f.hidden_field :user_id, :value => @user_id %>    
-							</div>
+			<% end %>
+			<%= form_for :chat, :url => chats_path do |f| %>
+				<div class="row">
+					<div class="col-md-10">
+						<div class="form-group">
+							<% @chat_id = chat.id %>
+							<%= f.text_field :content, class: "form-control", placeholder: "Reply..." %>   
+							<%= f.hidden_field :chat_id, :value => @chat_id %>
 						</div>
-						<div class="col-md-3">
-							<div class="form-group text-center">
-								<%= f.submit "Send", class: "btn btn-primary btn-block" %>
-							</div>
-						</div>	
 					</div>
-				<% end %>
-	<% end %>
+					<div class="col-md-2">
+						<div class="form-group">
+							<%= f.submit "Send", class: "btn btn-primary btn-block" %>
+						</div>
+					</div>	
+				</div>
+			<% end %>
+		</div>
+	</div>
 <% end %>
