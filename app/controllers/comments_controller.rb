@@ -1,7 +1,6 @@
 class CommentsController < ApplicationController
 
   def create
-
     comment_params = params.require(:comment).permit(:line, :post_id, :user_id)
     comment = Comment.new(comment_params)
     comment.line = "#{current_user.name}: #{comment.line}"
@@ -11,7 +10,6 @@ class CommentsController < ApplicationController
       flash[:error] = "Your comment is too short"
       redirect_to posts_path
     end
-
   end
 
   def destroy
