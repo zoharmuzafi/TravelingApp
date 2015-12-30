@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+#version
+ruby '2.2.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
@@ -32,8 +34,10 @@ gem "pg"
 #enable all platform features
 gem 'rails_12factor'
 
-#version
-ruby '2.2.1'
+#thin gem for heroku
+gem 'thin'
+
+
 
 
 # Use Unicorn as the app server
