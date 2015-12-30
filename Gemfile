@@ -29,6 +29,13 @@ gem 'bcrypt', '~> 3.1.7'
 #postgres
 gem "pg"
 
+#enable all platform features
+gem 'rails_12factor'
+
+#version
+ruby '2.2.1'
+
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
